@@ -258,6 +258,25 @@ public class ArbolBinarioBusqueda {
         throw new IllegalStateException(
                 "No se encontro ancestro comun");
     }
+    
+    // Problema 5: Invertir el arbol (espejo)
+    public void invertir() {
+        invertirRecursivo(raiz);
+    }
+
+    private void invertirRecursivo(Nodo nodo) {
+
+        if (nodo == null) {
+            return;
+        }
+
+        Nodo temporal = nodo.izquierdo;
+        nodo.izquierdo = nodo.derecho;
+        nodo.derecho = temporal;
+
+        invertirRecursivo(nodo.izquierdo);
+        invertirRecursivo(nodo.derecho);
+    }
 
     /**
      * Cuenta cuantos nodos hoja (sin hijos) tiene el arbol.

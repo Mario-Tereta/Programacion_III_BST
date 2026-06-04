@@ -144,6 +144,29 @@ public class Principal {
 
         System.out.println( "LCA(60,80): " + arbolLCA.ancestroComunMasBajo(60, 80));
         
+        
+        ArbolBinarioBusqueda espejo =                new ArbolBinarioBusqueda();
+
+        int[] datosEspejo = {50, 30, 70, 20, 40, 60, 80, 10};
+
+        for (int valor : datosEspejo) {
+            espejo.insertar(valor);
+        }
+
+        System.out.println("ANTES DE INVERTIR");
+        espejo.imprimirArbol();
+
+        System.out.print("InOrden: ");
+        espejo.inOrden();
+
+        espejo.invertir();
+
+        System.out.println("\nDESPUES DE INVERTIR");
+        espejo.imprimirArbol();
+
+        System.out.print("InOrden: ");
+        espejo.inOrden();
+        
         /*
          * Ejercicios
          *
