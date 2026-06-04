@@ -206,6 +206,28 @@ public class ArbolBinarioBusqueda {
         return esBalanceadoRecursivo(nodo.izquierdo)
                 && esBalanceadoRecursivo(nodo.derecho);
     }
+    
+    // Problema 3: Verificar que el arbol cumple la propiedad de BST
+    
+    public boolean esBSTValido() {
+        return esBSTValidoRecursivo(
+                raiz,
+                Integer.MIN_VALUE, Integer.MAX_VALUE);
+    }
+
+    private boolean esBSTValidoRecursivo(
+            Nodo nodo, int minimo, int maximo) {
+
+        if (nodo == null) {
+            return true;
+        }
+
+        if (nodo.dato <= minimo || nodo.dato >= maximo) {
+            return false;
+        }
+
+        return esBSTValidoRecursivo(nodo.izquierdo, minimo, nodo.dato) && esBSTValidoRecursivo(nodo.derecho, nodo.dato, maximo);
+    }
 
     /**
      * Cuenta cuantos nodos hoja (sin hijos) tiene el arbol.

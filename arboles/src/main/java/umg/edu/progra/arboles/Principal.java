@@ -38,8 +38,9 @@ public class Principal {
         System.out.println("Minimo:  " + arbol.minimo());
         System.out.println("Maximo:  " + arbol.maximo());
         System.out.println("Hojas:   " + arbol.contarHojas());
-        System.out.println("Contar nodos recursivo: " + arbol.contarNodos());
-        System.out.println("Balanceado: " + arbol.esBalanceado());
+        System.out.println("Contar nodos recursivo: " + arbol.contarNodos()); // Ejercicio 1
+        System.out.println("Balanceado: " + arbol.esBalanceado()); // Ejercicio 2
+        System.out.println("BST valido: " + arbol.esBSTValido()); // Ejercicio 3
 
         System.out.println("\n--- Representacion visual (rotada 90 grados) ---");
         arbol.imprimirArbol();
@@ -85,8 +86,8 @@ public class Principal {
         System.out.println("Tamanio final: " + arbol.tamanio());
         System.out.println("Altura final:  " + arbol.altura());
         
-        ArbolBinarioBusqueda desbalanceado =
-                new ArbolBinarioBusqueda();
+        //ejercicio 2: arbol desbalanceado
+        ArbolBinarioBusqueda desbalanceado = new ArbolBinarioBusqueda();
 
         desbalanceado.insertar(1);
         desbalanceado.insertar(2);
@@ -94,11 +95,38 @@ public class Principal {
         desbalanceado.insertar(4);
         desbalanceado.insertar(5);
 
-        System.out.println(
-                "Arbol desbalanceado: "
-                + desbalanceado.esBalanceado());
+        System.out.println("Arbol desbalanceado: " + desbalanceado.esBalanceado());
 
         desbalanceado.imprimirArbol();
+        
+        //ejercicio 3: arbol no es BST
+        ArbolBinarioBusqueda roto =
+                new ArbolBinarioBusqueda();
+
+        roto.insertar(50);
+        roto.insertar(30);
+        roto.insertar(70);
+
+        /*
+         * Rompemos la propiedad BST:
+         *
+         *      50
+         *     /
+         *   30
+         *     \
+         *     100
+         *
+         * 100 está en el subárbol izquierdo de 50,
+         * lo cual es incorrecto.
+         */
+        roto.getRaiz().izquierdo.derecho =
+                new Nodo(100);
+
+        System.out.println(
+                "BST roto valido: "
+                + roto.esBSTValido());
+
+        roto.imprimirArbol();
 
         /*
          * Ejercicios
