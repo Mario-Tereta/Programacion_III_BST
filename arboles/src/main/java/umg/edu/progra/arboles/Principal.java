@@ -13,6 +13,30 @@ package umg.edu.progra.arboles;
 public class Principal {
 
     public static void main(String[] args) {
+    	
+    	//Extra E4: Construir un BST a partir de un arreglo int[] recibido por la consola (args).
+    	
+    	if (args.length > 0) {
+    	   
+    	    ArbolBinarioBusqueda arbolArgs =
+    	            new ArbolBinarioBusqueda();
+
+    	    for (String arg : args) {
+
+    	        int valor = Integer.parseInt(arg);
+
+    	        arbolArgs.insertar(valor);
+    	    }
+
+    	    System.out.println("Arbol construido desde args:");
+
+    	    arbolArgs.imprimirArbol();
+
+    	    System.out.print("InOrden: ");
+    	    arbolArgs.inOrden();
+
+    	    return;
+    	}
 
         ArbolBinarioBusqueda arbol = new ArbolBinarioBusqueda();
 
@@ -166,6 +190,82 @@ public class Principal {
 
         System.out.print("InOrden: ");
         espejo.inOrden();
+        
+        //Extra E1: Encontrar el k-esimo elemento mas pequeño (k-th smallest)
+        
+        ArbolBinarioBusqueda extra =
+                new ArbolBinarioBusqueda();
+
+        int[] datosExtra = {
+                50, 30, 70,
+                20, 40, 60, 80,
+                10
+        };
+
+        for (int valor : datosExtra) {
+            extra.insertar(valor);
+        }
+
+        System.out.println(
+                "1er menor: " +
+                extra.kEsimoMenor(1));
+
+        System.out.println(
+                "3er menor: " +
+                extra.kEsimoMenor(3));
+
+        System.out.println(
+                "5to menor: " +
+                extra.kEsimoMenor(5));
+
+        System.out.println(
+                "8vo menor: " +
+                extra.kEsimoMenor(8));
+        
+        // Extra E2: Encontrar el k-esimo elemento mas grande (k-th largest)
+        
+        ArbolBinarioBusqueda rango =
+                new ArbolBinarioBusqueda();
+
+        int[] datosRango = {
+                50, 30, 70,
+                20, 40, 60, 80,
+                10
+        };
+
+        for (int valor : datosRango) {
+            rango.insertar(valor);
+        }
+
+        System.out.print("Rango [25,65]: ");
+        rango.imprimirRangoOrdenado(25, 65);
+
+        System.out.print("Rango [10,40]: ");
+        rango.imprimirRangoOrdenado(10, 40);
+
+        System.out.print("Rango [70,100]: ");
+        rango.imprimirRangoOrdenado(70, 100);
+        
+       //Extra E3: Verificar si dos arboles son iguales (misma estructura y mismos valores)
+        
+        ArbolBinarioBusqueda diametro =
+                new ArbolBinarioBusqueda();
+
+        int[] datosDiametro = {
+                50, 30, 70,
+                20, 40, 60, 80,
+                10
+        };
+
+        for (int valor : datosDiametro) {
+            diametro.insertar(valor);
+        }
+
+        diametro.imprimirArbol();
+
+        System.out.println(
+                "Diametro: "
+                + diametro.diametro());
         
         /*
          * Ejercicios

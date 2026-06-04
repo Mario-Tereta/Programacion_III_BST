@@ -415,7 +415,123 @@ public class ArbolBinarioBusqueda {
         System.out.println("-> " + nodo.dato);
         imprimirArbolRecursivo(nodo.izquierdo, nivel + 1);
     }
+    
+    //Extra E1
 
+    private int contadorK;
+    private int resultadoK;
+
+    public int kEsimoMenor(int k) {
+
+        if (k < 1 || k > tamanio()) {
+            throw new IllegalArgumentException(
+                    "k fuera de rango");
+        }
+
+        contadorK = 0;
+        resultadoK = 0;
+
+        kEsimoMenorRecursivo(raiz, k);
+
+        return resultadoK;
+    }
+          
+
+    private void kEsimoMenorRecursivo(Nodo nodo, int k) {
+
+        if (nodo == null) {
+            return;
+        }
+
+        kEsimoMenorRecursivo(nodo.izquierdo, k);
+
+        contadorK++;
+
+        if (contadorK == k) {
+            resultadoK = nodo.dato;
+            return;
+        }
+
+        kEsimoMenorRecursivo(nodo.derecho, k);
+    }
+    
+    // Extra E2: kEsimoMayor
+    
+    public void imprimirRangoOrdenado(int min, int max) {
+        imprimirRangoOrdenadoRecursivo(raiz, min, max);
+        System.out.println();
+    }
+
+    private void imprimirRangoOrdenadoRecursivo(
+            Nodo nodo,
+            int min,
+            int max) {
+
+        if (nodo == null) {
+            return;
+        }
+
+        // Solo explorar izquierda si hay posibilidad
+        if (nodo.dato > min) {
+            imprimirRangoOrdenadoRecursivo(
+                    nodo.izquierdo,
+                    min,
+                    max);
+        }
+
+        // Imprimir si está dentro del rango
+        if (nodo.dato >= min &&
+            nodo.dato <= max) {
+
+            System.out.print(nodo.dato + " ");
+        }
+
+        // Solo explorar derecha si hay posibilidad
+        if (nodo.dato < max) {
+            imprimirRangoOrdenadoRecursivo(
+                    nodo.derecho,
+                    min,
+                    max);
+        }
+    }
+    
+    // Extra E3
+    
+    private int diametroMaximo;
+
+    public int diametro() {
+
+        diametroMaximo = 0;
+
+        calcularDiametro(raiz);
+
+        return diametroMaximo;
+    }
+
+    private int calcularDiametro(Nodo nodo) {
+
+        if (nodo == null) {
+            return -1;
+        }
+
+        int alturaIzquierda =
+                calcularDiametro(nodo.izquierdo);
+
+        int alturaDerecha =
+                calcularDiametro(nodo.derecho);
+
+        int diametroActual =
+                alturaIzquierda + alturaDerecha + 2;
+
+        if (diametroActual > diametroMaximo) {
+            diametroMaximo = diametroActual;
+        }
+
+        return 1 + Math.max(
+                alturaIzquierda,
+                alturaDerecha);
+    }
+    
     // ============================================================
     // COLA INTERNA (lista enlazada simple) usada para BFS.
     // Se implementa aqui para NO depender de java.util.
