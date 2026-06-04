@@ -228,6 +228,36 @@ public class ArbolBinarioBusqueda {
 
         return esBSTValidoRecursivo(nodo.izquierdo, minimo, nodo.dato) && esBSTValidoRecursivo(nodo.derecho, nodo.dato, maximo);
     }
+    
+    // Problema 4: Ancestro común más bajo (LCA)
+    
+    public int ancestroComunMasBajo(int a, int b) {
+
+        if (!contiene(a) || !contiene(b)) {
+            throw new IllegalArgumentException("Uno o ambos valores no existen en el arbol");
+        }
+
+        Nodo actual = raiz;
+
+        while (actual != null) {
+
+            if (a < actual.dato && b < actual.dato) {
+
+                actual = actual.izquierdo;
+
+            } else if (a > actual.dato && b > actual.dato) {
+
+                actual = actual.derecho;
+
+            } else {
+
+                return actual.dato;
+            }
+        }
+
+        throw new IllegalStateException(
+                "No se encontro ancestro comun");
+    }
 
     /**
      * Cuenta cuantos nodos hoja (sin hijos) tiene el arbol.

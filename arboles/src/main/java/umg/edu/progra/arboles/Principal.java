@@ -128,6 +128,22 @@ public class Principal {
 
         roto.imprimirArbol();
 
+        //ejercicio 4: LCA
+        
+        ArbolBinarioBusqueda arbolLCA = new ArbolBinarioBusqueda();
+
+        int[] datosLCA = { 50, 30, 70, 20, 40, 60, 80, 10};
+
+        for (int valor : datosLCA) {
+            arbolLCA.insertar(valor);
+        }
+
+        System.out.println( "LCA(10,40): " + arbolLCA.ancestroComunMasBajo(10, 40));
+
+        System.out.println( "LCA(10,80): " + arbolLCA.ancestroComunMasBajo(10, 80));
+
+        System.out.println( "LCA(60,80): " + arbolLCA.ancestroComunMasBajo(60, 80));
+        
         /*
          * Ejercicios
          *
